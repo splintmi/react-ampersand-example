@@ -7,8 +7,6 @@
         var checked = event.currentTarget.checked;
 
         this.props.model.set('active', checked);
-
-        this.props.onChecked(checked);
     }
 
     module.exports = React.createClass({

@@ -5,20 +5,6 @@
 
         React = require('react');
 
-    function childChecked(newValue) {
-        var currentCheckedItems = this.state.itemsChecked;
-
-        if (newValue) {
-            this.setState({
-                itemsChecked: currentCheckedItems + 1
-            });
-        } else {
-            this.setState({
-                itemsChecked: currentCheckedItems - 1
-            });
-        }
-    }
-
     module.exports = React.createClass({
         getInitialState: function () {
             return {
@@ -63,7 +49,7 @@
                 })
                 .map(function (model) {
                     return (
-                        <PoiItem key={model.id} model={model} onChecked={childChecked.bind(this)}/>
+                        <PoiItem key={model.id} model={model} />
                     );
                 }, this);
         },
