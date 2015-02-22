@@ -5,10 +5,25 @@
 
         React = require('react');
 
+    function childChecked(newValue) {
+        var currentCheckedItems = this.state.itemsChecked;
+
+        if (newValue) {
+            this.setState({
+                itemsChecked: currentCheckedItems + 1
+            });
+        } else {
+            this.setState({
+                itemsChecked: currentCheckedItems - 1
+            });
+        }
+    }
+
     module.exports = React.createClass({
         getInitialState: function () {
             return {
-                filter: ''
+                filter: '',
+                itemsChecked: 0
             };
         },
 
@@ -23,6 +38,7 @@
                     <ul>
                         {this.renderChildren()}
                     </ul>
+                    <h2>{'Checked Items: ' + this.state.itemsChecked}</h2>
                 </form>
             );
         },
@@ -37,7 +53,7 @@
                 })
                 .map(function (model) {
                     return (
-                        <PoiItem model={model} />
+                        <PoiItem model={model} onChecked={childChecked.bind(this)}/>
                     );
                 }, this);
         },
