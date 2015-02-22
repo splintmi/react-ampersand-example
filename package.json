@@ -1,0 +1,36 @@
+{
+  "name": "react-ampersand-example",
+  "version": "1.0.0",
+  "description": "An example that illustrates the basics of building an SPA with react + ampersand",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zpratt/react-ampersand-example.git"
+  },
+  "keywords": [
+    "react",
+    "ampersand",
+    "example"
+  ],
+  "author": "zach pratt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zpratt/react-ampersand-example/issues"
+  },
+  "homepage": "https://github.com/zpratt/react-ampersand-example",
+  "dependencies": {
+    "ampersand-model": "^4.0.3",
+    "ampersand-rest-collection": "^2.0.4",
+    "fake-rest-api": "git://github.com/zpratt/fake-rest-api.git#master",
+    "react": "^0.12.2"
+  },
+  "devDependencies": {
+    "chai": "^2.0.0",
+    "eslint": "^0.15.0",
+    "mocha": "^2.1.0",
+    "sinon": "^1.12.2"
+  }
+}
