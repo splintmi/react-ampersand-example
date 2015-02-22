@@ -28,7 +28,17 @@
         },
 
         componentDidMount: function () {
-            this.props.collection.on('change', this.forceUpdate);
+            var collection = this.props.collection;
+
+            collection.on('change', function () {
+                var selectedItems = collection.filter(function (model) {
+                    return model.get('active');
+                });
+
+                this.setState({
+                    itemsChecked: selectedItems.length
+                });
+            }, this);
         },
 
         render: function () {
@@ -53,16 +63,26 @@
                 })
                 .map(function (model) {
                     return (
-                        <PoiItem model={model} onChecked={childChecked.bind(this)}/>
+                        <PoiItem key={model.id} model={model} onChecked={childChecked.bind(this)}/>
                     );
                 }, this);
         },
 
         filter: function (event) {
-            var filterInput = event.currentTarget.value;
+            var filterInput = event.currentTarget.value,
+                numberOfVisiblySelectedItems = 0;
+
+            this.props.collection.each(function (model) {
+                var isVisible = (model.get('name').indexOf(filterInput) > -1);
+
+                if (model.get('active') && isVisible) {
+                    numberOfVisiblySelectedItems += 1;
+                }
+            });
 
             this.setState({
-                filter: filterInput
+                filter: filterInput,
+                itemsChecked: numberOfVisiblySelectedItems
             });
         }
     });

@@ -6,9 +6,7 @@
     function handleChecked(event) {
         var checked = event.currentTarget.checked;
 
-        this.setState({
-            checked: checked
-        });
+        this.props.model.set('active', checked);
 
         this.props.onChecked(checked);
     }
@@ -25,7 +23,7 @@
 
             return (
                 <li>
-                    <input type="checkbox" onChange={handleChecked.bind(this)}/>
+                    <input type="checkbox" onChange={handleChecked.bind(this)} checked={model.attributes.active}/>
                     {model.attributes.name}
                 </li>
             );
