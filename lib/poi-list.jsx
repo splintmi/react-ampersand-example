@@ -5,12 +5,16 @@
 
         React = require('react');
 
+    function modelIsFilteredIn(model, filterInput) {
+        return (model.get('name').indexOf(filterInput) > -1);
+    }
+
     function handleFilter(event) {
         var filterInput = event.currentTarget.value,
             numberOfVisiblySelectedItems = 0;
 
         this.props.collection.each(function (model) {
-            var isVisible = (model.get('name').indexOf(filterInput) > -1);
+            var isVisible = modelIsFilteredIn(model, filterInput);
 
             if (model.get('active') && isVisible) {
                 numberOfVisiblySelectedItems += 1;
@@ -29,7 +33,7 @@
 
         return collection
             .filter(function (model) {
-                return (model.get('name').indexOf(filterInput) > -1);
+                return modelIsFilteredIn(model, filterInput);
             })
             .map(function (model) {
                 return (
@@ -47,11 +51,12 @@
         },
 
         componentDidMount: function () {
-            var collection = this.props.collection;
+            var collection = this.props.collection,
+                filterInput = this.state.filter;
 
             collection.on('change', function () {
                 var selectedItems = collection.filter(function (model) {
-                    return model.get('active');
+                    return model.get('active') && modelIsFilteredIn(model, filterInput);
                 });
 
                 this.setState({
