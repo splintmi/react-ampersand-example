@@ -3,6 +3,8 @@
 
     var React = require('react');
 
+    require('./css/styles.css');
+
     function handleChecked(event) {
         var checked = event.currentTarget.checked;
 
@@ -20,7 +22,7 @@
             var model = this.props.model;
 
             return (
-                <li>
+                <li className="poi-item">
                     <input type="checkbox" onChange={handleChecked.bind(this)} checked={model.attributes.active}/>
                     {model.attributes.name}
                 </li>

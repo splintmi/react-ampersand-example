@@ -4,10 +4,7 @@
   "description": "An example that illustrates the basics of building an SPA with react + ampersand",
   "main": "index.js",
   "scripts": {
-    "start": "node_modules/.bin/browserify client.js > build/app.js && node server.js"
-  },
-  "browserify": {
-    "transform": ["reactify"]
+    "start": "node_modules/.bin/webpack && node server.js"
   },
   "repository": {
     "type": "git",
@@ -32,11 +29,14 @@
     "react": "^0.12.2"
   },
   "devDependencies": {
-    "browserify": "^9.0.3",
     "chai": "^2.0.0",
+    "css-loader": "^0.9.1",
     "eslint": "^0.15.0",
+    "jsx-loader": "^0.12.2",
     "mocha": "^2.1.0",
     "reactify": "^1.0.0",
-    "sinon": "^1.12.2"
+    "sinon": "^1.12.2",
+    "style-loader": "^0.8.3",
+    "webpack": "^1.5.3"
   }
 }
