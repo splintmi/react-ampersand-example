@@ -50,7 +50,7 @@
             })
             .map(function (model) {
                 return (
-                    <PoiItem key={model.id} model={model} visible={modelIsFilteredIn(model, filterInput)}/>
+                    <PoiItem key={model.id} model={model} />
                 );
             }, this);
     }
