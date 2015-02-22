@@ -4,7 +4,10 @@
   "description": "An example that illustrates the basics of building an SPA with react + ampersand",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node_modules/.bin/browserify client.js > build/app.js && node server.js"
+  },
+  "browserify": {
+    "transform": ["reactify"]
   },
   "repository": {
     "type": "git",
@@ -24,13 +27,16 @@
   "dependencies": {
     "ampersand-model": "^4.0.3",
     "ampersand-rest-collection": "^2.0.4",
+    "config": "^1.12.0",
     "fake-rest-api": "git://github.com/zpratt/fake-rest-api.git#master",
     "react": "^0.12.2"
   },
   "devDependencies": {
+    "browserify": "^9.0.3",
     "chai": "^2.0.0",
     "eslint": "^0.15.0",
     "mocha": "^2.1.0",
+    "reactify": "^1.0.0",
     "sinon": "^1.12.2"
   }
 }
