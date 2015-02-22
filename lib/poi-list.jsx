@@ -27,6 +27,19 @@
         });
     }
 
+    function selectAll(event) {
+        var checked = event.currentTarget.checked,
+            collection = this.props.collection;
+
+        collection.each(function (model) {
+            model.set('active', checked, {silent: true});
+        });
+
+        this.setState({
+            itemsChecked: checked ? collection.length : 0
+        });
+    }
+
     function renderChildren() {
         var collection = this.props.collection,
             filterInput = this.state.filter;
@@ -37,7 +50,7 @@
             })
             .map(function (model) {
                 return (
-                    <PoiItem key={model.id} model={model} />
+                    <PoiItem key={model.id} model={model} visible={modelIsFilteredIn(model, filterInput)}/>
                 );
             }, this);
     }
@@ -68,11 +81,18 @@
         render: function () {
             return (
                 <form>
-                    <input type="text" onChange={handleFilter.bind(this)} />
-                    <ul>
-                        {renderChildren.call(this)}
-                    </ul>
+                    <fieldset>
+                        <label htmlFor="list-filter">Filter the list: </label>
+                        <input name="list-filter" type="text" onChange={handleFilter.bind(this)} />
+
+                        <label htmlFor="list-filter">Select All</label>
+                        <input name="select-all" type="checkbox" onChange={selectAll.bind(this)} />
+                        <ul>
+                            {renderChildren.call(this)}
+                        </ul>
+                    </fieldset>
                     <h2>{'Checked Items: ' + this.state.itemsChecked}</h2>
+
                 </form>
             );
         }
